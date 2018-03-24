@@ -1,0 +1,40 @@
+{
+	"name": "davids-server-framework",
+	"description": "David's Server Framework",
+	"version": "0.0.0",
+	"private": true,
+	"dependencies": {
+		"babel-core": "*",
+		"babel-preset-env": "*",
+		"babel-preset-stage-0": "*",
+		"bcrypt": "*",
+		"bluebird": "*",
+		"co": "*",
+		"http": "*",
+		"is-generator-function": "*",
+		"koa": "*",
+		"koa-body": "*",
+		"koa-compose": "*",
+		"koa-convert": "*",
+		"koa-send": "*",
+		"koa-session": "*",
+		"lodash": "*",
+		"mysql": "*",
+		"node-ipc": "*",
+		"socket.io": "*",
+		"sorted-array": "*"
+	},
+	"babel": {
+		"presets": [
+			[
+				"env",
+				{
+					"targets": {
+						"node": "9"
+					}
+				}
+			],
+			"stage-0"
+		]
+	}
+}

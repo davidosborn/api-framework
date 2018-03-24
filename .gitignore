@@ -1,0 +1,7 @@
+.timestamp
+backup
+node_modules
+npm-debug.log
+
+/client/thirdparty
+/client/web.config
