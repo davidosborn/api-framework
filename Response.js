@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = class Response {
+export default class Response {
 	static html(html) {
 		header('Content-Type: text/html')
 		echo(html)

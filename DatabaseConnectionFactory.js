@@ -1,15 +1,28 @@
 'use strict'
 
-let EventEmitter = require('events')
-let mysql        = require('mysql')
-
-let DatabaseUtils = require('./DatabaseUtils')
-let Promise       = require('./Promise') // Promise.promisify
+import EventEmitter from 'events'
+import mysql from 'mysql'
+import DatabaseUtils from './DatabaseUtils'
+import Promise from './Promise' // Promise.promisify
 
 /**
  * Provides access to the database.
  */
-class DatabaseConnectionFactory extends EventEmitter {
+export default class DatabaseConnectionFactory extends EventEmitter {
+	/**
+	 * A role representing an anonymous user.
+	 *
+	 * @constant
+	 */
+	static ROLE_ANONYMOUS = 'anon'
+
+	/**
+	 * A role representing the application.
+	 *
+	 * @constant
+	 */
+	static ROLE_APP = 'app'
+
 	/**
 	 * Creates an instance of the factory.
 	 *
@@ -173,19 +186,3 @@ class DatabaseConnectionFactory extends EventEmitter {
 		return this.database + '_' + role
 	}
 }
-
-/**
- * A role representing an anonymous user.
- *
- * @constant
- */
-DatabaseConnectionFactory.ROLE_ANONYMOUS = 'anon'
-
-/**
- * A role representing the application.
- *
- * @constant
- */
-DatabaseConnectionFactory.ROLE_APP = 'app'
-
-module.exports = DatabaseConnectionFactory

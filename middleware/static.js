@@ -1,14 +1,13 @@
 'use strict'
 
-let co   = require('co')
-let send = require('koa-send')
-
-let UrlUtils = require('../UrlUtils')
+import co from 'co'
+import send from 'koa-send'
+import UrlUtils from '../UrlUtils'
 
 /**
  * Koa middleware for serving static content.
  */
-module.exports = function(root) {
+export default function(root) {
 	root = require('path').resolve(root)
 
 	return async function(ctx, next) {

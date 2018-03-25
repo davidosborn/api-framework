@@ -1,13 +1,13 @@
 'use strict'
 
-let Controller = require('./Controller')
-let Route      = require('./Route')
-let UrlUtils   = require('./UrlUtils')
+import Controller from './Controller'
+import Route from './Route'
+import UrlUtils from './UrlUtils'
 
 /**
  * Provides API documentation.
  */
-class ApiDocController extends Controller {
+export default class ApiDocController extends Controller {
 	constructor(router, title) {
 		super()
 
@@ -92,5 +92,3 @@ class ApiDocController extends Controller {
 		)
 	}
 }
-
-module.exports = ApiDocController

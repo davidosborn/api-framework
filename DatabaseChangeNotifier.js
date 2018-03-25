@@ -1,6 +1,6 @@
 'use strict'
 
-class DatabaseChangeNotifier {
+export default class DatabaseChangeNotifier {
 	constructor(io) {
 		/**
 		 * The registered listeners, indexed by DatabaseConnectionFactory.
@@ -49,5 +49,3 @@ class DatabaseChangeNotifier {
 		}
 	}
 }
-
-module.exports = DatabaseChangeNotifier

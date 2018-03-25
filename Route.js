@@ -1,14 +1,13 @@
 'use strict'
 
-let isGeneratorFunction = require('is-generator-function')
-
-let PathPattern = require('./PathPattern')
-let UrlUtils    = require('./UrlUtils')
+import isGeneratorFunction from 'is-generator-function'
+import PathPattern from './PathPattern'
+import UrlUtils from './UrlUtils'
 
 /**
  * A route.
  */
-class Route {
+export default class Route {
 	/**
 	 * @param {Array|String} [methods]     - The HTTP method(s) supported by the route.
 	 * @param {String}       [path]        - The path.
@@ -133,5 +132,3 @@ class Route {
 		this.path = path
 	}
 }
-
-module.exports = Route

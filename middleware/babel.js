@@ -1,14 +1,13 @@
 'use strict'
 
-let babel = require('babel-core')
-let fs    = require('fs')
-
-let UrlUtils = require('../UrlUtils')
+import babel from 'babel-core'
+import fs from 'fs'
+import UrlUtils from '../UrlUtils'
 
 /**
  * Koa middleware for transpiling JavaScript code with Babel.
  */
-module.exports = function(options) {
+export default function(options) {
 	return async function(ctx, next) {
 		await next()
 

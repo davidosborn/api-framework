@@ -1,6 +1,6 @@
 'use strict'
 
-class UrlUtils {
+export default class UrlUtils {
 	/**
 	 * Concatenates multiple paths.
 	 */
@@ -37,5 +37,3 @@ class UrlUtils {
 		return path.slice(1).split('/')
 	}
 }
-
-module.exports = UrlUtils

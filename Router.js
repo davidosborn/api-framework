@@ -1,17 +1,16 @@
 'use strict'
 
-let compose     = require('koa-compose')
-let SortedArray = require('sorted-array')
-
-let Controller = require('./Controller')
-let Route      = require('./Route')
-let RouteTree  = require('./RouteTree')
-let UrlUtils   = require('./UrlUtils')
+import compose from 'koa-compose'
+import SortedArray from 'sorted-array'
+import Controller from './Controller'
+import Route from './Route'
+import RouteTree from './RouteTree'
+import UrlUtils from './UrlUtils'
 
 /**
  * A router.
  */
-class Router extends Controller {
+export default class Router extends Controller {
 	constructor() {
 		super()
 
@@ -193,5 +192,3 @@ class Router extends Controller {
 		return this._sortedRoutes.array
 	}
 }
-
-module.exports = Router

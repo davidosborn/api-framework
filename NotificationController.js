@@ -1,12 +1,12 @@
 'use strict'
 
-let Controller = require('./Controller')
-let Route      = require('./Route')
+import Controller from './Controller'
+import Route from './Route'
 
 /**
  * Provides a route for registering to receive notifications.
  */
-class NotificationController extends Controller {
+export default class NotificationController extends Controller {
 	constructor() {
 		super()
 
@@ -18,5 +18,3 @@ class NotificationController extends Controller {
 	async _onPost(ctx, next) {
 	}
 }
-
-module.exports = NotificationController

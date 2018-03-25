@@ -1,14 +1,13 @@
 'use strict'
 
-let bcrypt = require('bcrypt')
-
-let Controller = require('./Controller')
-let Route      = require('./Route')
+import bcrypt from 'bcrypt'
+import Controller from './Controller'
+import Route from './Route'
 
 /**
  * Provides routes for authentication.
  */
-class LoginController extends Controller {
+export default class LoginController extends Controller {
 	constructor(databaseConnectionFactory) {
 		super()
 
@@ -51,7 +50,7 @@ class LoginController extends Controller {
 			ctx.throw(400)
 
 		// query database
-		let users = await this._databaseConnectionFactory.query(this._databaseConnectionFactory.constructor.ROLE_APP, db =>
+		let users = await this._databaseConnectionFactory.connect(this._databaseConnectionFactory.constructor.ROLE_APP, db =>
 			db.query('SELECT id, email, name, password_hash, role FROM users WHERE email=' + db.escape(email)))
 
 		// validate email
@@ -78,5 +77,3 @@ class LoginController extends Controller {
 		ctx.throw(401, 'Incorrect password')
 	}
 }
-
-module.exports = LoginController

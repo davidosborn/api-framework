@@ -1,12 +1,12 @@
 'use strict'
 
-let Controller = require('./Controller')
-let Route      = require('./Route')
+import Controller from './Controller'
+import Route from './Route'
 
 /**
  * Provides routes for a collection.
  */
-class CollectionController extends Controller {
+export default class CollectionController extends Controller {
 	constructor(name) {
 		super()
 
@@ -60,5 +60,3 @@ class CollectionController extends Controller {
 		ctx.throw(500, 'Not implemented')
 	}
 }
-
-module.exports = CollectionController

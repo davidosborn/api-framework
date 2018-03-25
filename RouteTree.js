@@ -1,12 +1,31 @@
 'use strict'
 
-let PathPattern = require('./PathPattern')
-let UrlUtils    = require('./UrlUtils')
+import PathPattern from './PathPattern'
+import UrlUtils from './UrlUtils'
 
 /**
  * A route tree, or a node in a route tree.
  */
-class RouteTree {
+export default class RouteTree {
+	/**
+	 * A pattern and its associated route.
+	 */
+	static PatternRoute = class {
+		constructor(pathPattern, route) {
+			/**
+			 * A path pattern.
+			 * @type {PathPattern}
+			 */
+			this.pathPattern = pathPattern
+
+			/**
+			 * A route.
+			 * @type {Route}
+			 */
+			this.route = route
+		}
+	}
+
 	/**
 	 * @constructor
 	 * @param {Array.<Route>} [routes] - An array of routes.
@@ -237,24 +256,3 @@ class RouteTree {
 		return error
 	}
 }
-
-/**
- * A pattern and its associated route.
- */
-RouteTree.PatternRoute = class {
-	constructor(pathPattern, route) {
-		/**
-		 * A path pattern.
-		 * @type {PathPattern}
-		 */
-		this.pathPattern = pathPattern
-
-		/**
-		 * A route.
-		 * @type {Route}
-		 */
-		this.route = route
-	}
-}
-
-module.exports = RouteTree

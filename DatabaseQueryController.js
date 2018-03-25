@@ -1,12 +1,12 @@
 'use strict'
 
-let Controller = require('./Controller')
-let Route      = require('./Route')
+import Controller from './Controller'
+import Route from './Route'
 
 /**
  * Provides a route for executing arbitrary SQL queries.
  */
-class DatabaseQueryController extends Controller {
+export default class DatabaseQueryController extends Controller {
 	constructor(databaseConnectionFactory) {
 		super()
 
@@ -34,5 +34,3 @@ class DatabaseQueryController extends Controller {
 		return next()
 	}
 }
-
-module.exports = DatabaseQueryController

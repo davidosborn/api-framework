@@ -1,6 +1,6 @@
 'use strict'
 
-let ipc = require('node-ipc')
+import ipc from 'node-ipc'
 
 /**
  * Supports communication over IPC.

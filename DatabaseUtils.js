@@ -3,7 +3,7 @@
 /**
  * Database utilities.
  */
-class DatabaseUtils {
+export default class DatabaseUtils {
 	/**
 	 * Converts MariaDB errors to Koa errors.
 	 */
@@ -737,5 +737,3 @@ class DatabaseUtils {
 		ctx.throw(status, error)
 	}
 }
-
-module.exports = DatabaseUtils

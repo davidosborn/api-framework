@@ -1,16 +1,15 @@
 'use strict'
 
-let http    = require('http')
-let Koa     = require('koa')
-let Body    = require('koa-body')
-let convert = require('koa-convert')
-let Session = require('koa-session')
-let ipc     = require('node-ipc')
-let Socket  = require('socket.io')
+import http from 'http'
+import Koa from 'koa'
+import Body from 'koa-body'
+import convert from 'koa-convert'
+import Session from 'koa-session'
+import ipc from 'node-ipc'
+import Socket from 'socket.io'
+import UrlUtils from './UrlUtils'
 
-let UrlUtils = require('./UrlUtils')
-
-class Application extends Koa {
+export default class Application extends Koa {
 	/**
 	 * @param {String} [app] - The short name of the application.
 	 */
@@ -100,5 +99,3 @@ class Application extends Koa {
 		Koa.prototype.use.call(this, middleware)
 	}
 }
-
-module.exports = Application

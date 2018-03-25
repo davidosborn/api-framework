@@ -1,12 +1,12 @@
 'use strict'
 
-let Controller = require('./Controller')
-let Route      = require('./Route')
+import Controller from './Controller'
+import Route from './Route'
 
 /**
  * Provides routes for user registration.
  */
-class RegistrationController extends Controller {
+export default class RegistrationController extends Controller {
 	constructor(databaseConnectionFactory) {
 		super()
 
@@ -27,5 +27,3 @@ class RegistrationController extends Controller {
 	async _onPost(ctx, next) {
 	}
 }
-
-module.exports = RegistrationController

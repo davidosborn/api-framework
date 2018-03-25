@@ -1,12 +1,22 @@
 'use strict'
 
-let RegExp   = require('./RegExp') // RegExp.escape
-let UrlUtils = require('./UrlUtils')
+import RegExp from './RegExp' // RegExp.escape
+import UrlUtils from './UrlUtils'
 
 /**
  * Provides information about a path, including the patterns it contains.
  */
-class PathPattern {
+export default class PathPattern {
+	/**
+	 * The patterns that can be used in a path segment.
+	 */
+	static PatternType = {
+		NONE:     0,
+		GLOB:     1,
+		GLOBSTAR: 2,
+		REGEXP:   3
+	}
+
 	constructor(pathSegment, nextPathPattern) {
 		/**
 		 * The type of pattern used in the path segment.
@@ -129,15 +139,3 @@ class PathPattern {
 		}
 	}
 }
-
-/**
- * The patterns that can be used in a path segment.
- */
-PathPattern.PatternType = {
-	NONE:     0,
-	GLOB:     1,
-	GLOBSTAR: 2,
-	REGEXP:   3
-}
-
-module.exports = PathPattern

@@ -1,13 +1,15 @@
 'use strict'
 
-let fs = require('bluebird').promisifyAll(require('fs'))
+import bluebird from 'bluebird'
+import fs from 'fs'
+import UrlUtils from '../UrlUtils'
 
-let UrlUtils = require('../UrlUtils')
+//fs = bluebird.promisifyAll(fs)
 
 /**
  * Koa middleware to serve a directory index.
  */
-module.exports = function(root, title) {
+export default function(root, title) {
 	root = require('path').resolve(root)
 
 	return async function(ctx, next) {

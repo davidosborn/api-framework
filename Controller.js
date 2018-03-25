@@ -3,7 +3,7 @@
 /**
  * Provides routes for a specific set of functionality.
  */
-class Controller {
+export default class Controller {
 	/**
 	 * @param {Array.<Route>} routes - The routes defined by this controller.
 	 */
@@ -25,5 +25,3 @@ class Controller {
 		return this._routes
 	}
 }
-
-module.exports = Controller
