@@ -82,18 +82,21 @@ export default class DatabaseConnectionFactory extends EventEmitter {
 
 				// emit change notifications
 				if (result.affectedRows) {
-					let [type, table] = /^\s*((DELETE)\s+FROM\s+(\S+)|(INSERT)\s+INTO\s+(\S+)|(UPDATE)\s+(\S+))/i.exec(sql).slice(2).filter(x => x)
-					if (table) {
-						type = type.toLowerCase()
-						if (type !== 'update' || result.changedRows) // ignore updates that don't change anything
-							factory.emit('change', {
-								affectedRows: result.affectedRows,
-								changedRows:  result.changedRows,
-								database:     factory.database,
-								insertId:     result.insertId,
-								table:        table.replace(/[`"]/g, ''),
-								type:         type
-							})
+					let matches = /^\s*((DELETE)\s+FROM\s+(\S+)|(INSERT)\s+INTO\s+(\S+)|(UPDATE)\s+(\S+))/i.exec(sql)
+					if (matches != null) {
+						let [type, table] = matches.slice(2).filter(x => x)
+						if (table) {
+							type = type.toLowerCase()
+							if (type !== 'update' || result.changedRows) // ignore updates that don't change anything
+								factory.emit('change', {
+									affectedRows: result.affectedRows,
+									changedRows:  result.changedRows,
+									database:     factory.database,
+									insertId:     result.insertId,
+									table:        table.replace(/[`"]/g, ''),
+									type:         type
+								})
+						}
 					}
 				}
 
