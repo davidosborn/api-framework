@@ -9,11 +9,14 @@ import ipc from 'node-ipc'
 import Socket from 'socket.io'
 import UrlUtils from './UrlUtils'
 
+/**
+ * The application.
+ */
 export default class Application extends Koa {
 	/**
-	 * @param {String} [app] - The short name of the application.
+	 * @param {String} [name] - The program name of the application.
 	 */
-	constructor(app) {
+	constructor(name) {
 		super()
 
 		this.experimental = true
@@ -42,7 +45,7 @@ export default class Application extends Koa {
 		this.io = new Socket
 
 		// start IPC server
-		ipc.serve(app)
+		ipc.serve(name)
 		this.ipc = ipc.server
 	}
 

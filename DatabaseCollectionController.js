@@ -5,17 +5,17 @@ import DatabaseConnectionFactory from './DatabaseConnectionFactory'
 import DatabaseUtils from './DatabaseUtils'
 
 /**
- * Provides routes to access a collection.
+ * A controller that provides routes to access a collection.
  */
 export default class DatabaseCollectionController extends CollectionController {
 	/**
-	 * @param {DatabaseConnectionFactory} databaseConnectionFactory
-	 * @param {String}                    table
-	 * @param {Object}                    [options]
-	 * @param {Array.<String>}            [options.columns]        - The columns that should be exposed.
-	 * @param {Array.<String>}            [options.excludeColumns] - The columns that should be hidden.
+	 * @param {DatabaseConnectionFactory} db                       The database.
+	 * @param {String}                    table                    The table to expose.
+	 * @param {Object}                    [options]                The options.
+	 * @param {Array.<String>}            [options.columns]        The columns to expose.
+	 * @param {Array.<String>}            [options.excludeColumns] The columns to hide.
 	 */
-	constructor(databaseConnectionFactory, table, options) {
+	constructor(db, table, options) {
 		super(table)
 
 		/**
@@ -25,7 +25,7 @@ export default class DatabaseCollectionController extends CollectionController {
 		 *
 		 * @private
 		 */
-		this._databaseConnectionFactory = databaseConnectionFactory
+		this._db = db
 
 		/**
 		 * The database table that the controller provides access to.
@@ -65,7 +65,7 @@ export default class DatabaseCollectionController extends CollectionController {
 
 			// get available columns from schema if not known
 			if (this._columns === undefined)
-				this._columns = this._databaseConnectionFactory.connect(DatabaseConnectionFactory.ROLE_APP, db =>
+				this._columns = this._db.query(DatabaseConnectionFactory.ROLE_APP, db =>
 					db.query('SELECT column_name FROM information_schema.columns WHERE table_schema=(SELECT DATABASE()) AND table_name=' + db.escape(this._table))
 						.then(result => result.map(row => row.column_name.toLowerCase())))
 
@@ -91,7 +91,7 @@ export default class DatabaseCollectionController extends CollectionController {
 	async _onDelete(ctx, next) {
 		// execute database query
 		// TODO: Babel does not currently support lexical this in arrow functions during async/await
-		await this._databaseConnectionFactory.connect(ctx, (function(db) {
+		await this._db.query(ctx, (function(db) {
 			return db.query('TRUNCATE TABLE ' + db.escapeId(this._table))
 		}).bind(this))
 
@@ -105,7 +105,7 @@ export default class DatabaseCollectionController extends CollectionController {
 	async _onDeleteItem(ctx, next, id) {
 		// execute database query
 		// TODO: Babel does not currently support lexical this in arrow functions during async/await
-		let result = await this._databaseConnectionFactory.connect(ctx, (function(db) {
+		let result = await this._db.query(ctx, (function(db) {
 			return db.query('DELETE FROM ' + db.escapeId(this._table) + ' WHERE id=' + db.escape(id))
 		}).bind(this))
 
@@ -121,7 +121,7 @@ export default class DatabaseCollectionController extends CollectionController {
 	async _onGet(ctx, next) {
 		// execute database query
 		// TODO: Babel does not currently support lexical this in arrow functions during async/await
-		let result = await this._databaseConnectionFactory.connect(ctx, (async function(db) {
+		let result = await this._db.query(ctx, (async function(db) {
 			// select columns
 			let columns = await this._getColumns(ctx)
 			columns = columns ? db.escapeId(columns) : '*'
@@ -148,7 +148,7 @@ export default class DatabaseCollectionController extends CollectionController {
 	async _onGetCount(ctx, next) {
 		// execute database query
 		// TODO: Babel does not currently support lexical this in arrow functions during async/await
-		let result = await this._databaseConnectionFactory.connect(ctx, (function(db) {
+		let result = await this._db.query(ctx, (function(db) {
 			return db.query('SELECT COUNT(*) FROM ' + db.escapeId(this._table))
 		}).bind(this))
 
@@ -161,7 +161,7 @@ export default class DatabaseCollectionController extends CollectionController {
 	async _onGetItem(ctx, next, id) {
 		// execute database query
 		// TODO: Babel does not currently support lexical this in arrow functions during async/await
-		let result = await this._databaseConnectionFactory.connect(ctx, (async function(db) {
+		let result = await this._db.query(ctx, (async function(db) {
 			// select columns
 			let columns = await this._getColumns(ctx)
 			columns = columns ? db.escapeId(columns) : '*'
@@ -182,7 +182,7 @@ export default class DatabaseCollectionController extends CollectionController {
 	async _onGetSchema(ctx, next) {
 		// execute database query
 		// TODO: Babel does not currently support lexical this in arrow functions during async/await
-		let result = await this._databaseConnectionFactory.connect(ctx, (async function(db) {
+		let result = await this._db.query(ctx, (async function(db) {
 			let sql =
 				'SELECT column_name,column_type,column_key,extra' +
 				' FROM information_schema.columns' +
@@ -205,7 +205,7 @@ export default class DatabaseCollectionController extends CollectionController {
 	async _onPost(ctx, next) {
 		// execute database query
 		// TODO: Babel does not currently support lexical this in arrow functions during async/await
-		let result = await this._databaseConnectionFactory.connect(ctx, (function(db) {
+		let result = await this._db.query(ctx, (function(db) {
 			return db.query(
 				'INSERT INTO ' + db.escapeId(this._table) +
 				' (' + db.escapeId(Object.keys(ctx.request.body)) + ')' +
@@ -223,7 +223,7 @@ export default class DatabaseCollectionController extends CollectionController {
 		if (_.isEmpty(ctx.request.body)) {
 			// execute database query
 			// TODO: Babel does not currently support lexical this in arrow functions during async/await
-			let result = await this._databaseConnectionFactory.connect(ctx, (function(db) {
+			let result = await this._db.query(ctx, (function(db) {
 				return db.query('SELECT COUNT(1) FROM ' + db.escapeId(this._table) + ' WHERE id=' + db.escape(id))
 			}).bind(this))
 
@@ -235,7 +235,7 @@ export default class DatabaseCollectionController extends CollectionController {
 		else {
 			// execute database query
 		// TODO: Babel does not currently support lexical this in arrow functions during async/await
-			let result = await this._databaseConnectionFactory.connect(ctx, (function(db) {
+			let result = await this._db.query(ctx, (function(db) {
 				return db.query(
 					'UPDATE ' + db.escapeId(this._table) +
 					' SET ' + db.escape(ctx.request.body) +
@@ -260,7 +260,7 @@ export default class DatabaseCollectionController extends CollectionController {
 
 		// execute database query
 		// TODO: Babel does not currently support lexical this in arrow functions during async/await
-		let result = await this._databaseConnectionFactory.connect(ctx, (function(db) {
+		let result = await this._db.query(ctx, (function(db) {
 			return db.query(
 				'INSERT INTO ' + db.escapeId(this._table) + ' (' + db.escapeId(Object.keys(item)) + ')' +
 				' VALUES (' + db.escape(_.values(item)) + ')' +

@@ -30,22 +30,22 @@ export default class DatabaseChangeNotifier {
 		})
 	}
 
-	registerDatabase(databaseConnectionFactory) {
+	registerDatabase(db) {
 		// ignore duplicate registrations
-		if (this.listenerByDatabase.has(databaseConnectionFactory))
+		if (this.listenerByDatabase.has(db))
 			return
 
 		// register listener
 		let listener = e => this.io.to(`notify_db_${e.table}`).emit('change', e)
-		databaseConnectionFactory.on('change', listener)
-		this.listenerByDatabase.set(databaseConnectionFactory, listener)
+		db.on('change', listener)
+		this.listenerByDatabase.set(db, listener)
 	}
 
-	unregisterDatabase(databaseConnectionFactory) {
-		let listener = this.listenerByDatabase.get(databaseConnectionFactory)
+	unregisterDatabase(db) {
+		let listener = this.listenerByDatabase.get(db)
 		if (listener !== undefined) {
-			databaseConnectionFactory.removeListener('change', listener)
-			this.listenerByDatabase.delete(databaseConnectionFactory)
+			db.removeListener('change', listener)
+			this.listenerByDatabase.delete(db)
 		}
 	}
 }

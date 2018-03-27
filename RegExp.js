@@ -1,6 +1,6 @@
 'use strict'
 
-if (RegExp.escape === undefined) {
+if (RegExp.escape === undefined)
 	/**
 	 * Escapes a string to prevent it from being interpreted as a regular expression.
 	 *
@@ -8,8 +8,7 @@ if (RegExp.escape === undefined) {
 	 *      {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions}
 	 */
 	RegExp.escape = function(s) {
-		return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+		return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 	}
-}
 
 module.exports = RegExp

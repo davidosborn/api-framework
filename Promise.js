@@ -3,7 +3,6 @@
 if (Promise.promisify === undefined) {
 	/**
 	 * Converts a function to a promise.
-	 *
 	 * @param {Function} fn - The function to convert.
 	 */
 	Promise.promisify = function(fn) {

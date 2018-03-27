@@ -8,17 +8,19 @@ import Route from './Route'
  * Provides routes for authentication.
  */
 export default class LoginController extends Controller {
-	constructor(databaseConnectionFactory) {
+	/**
+	 * Creates a new instance.
+	 * @param {DatabaseConnectionFactory} db The database.
+	 */
+	constructor(db) {
 		super()
 
 		/**
 		 * The database that the controller provides access to.
-		 *
 		 * @type {Database}
-		 *
 		 * @private
 		 */
-		this._databaseConnectionFactory = databaseConnectionFactory
+		this._db = db
 
 		this._routes.push(
 			new Route('get,post', '/login',  this._onLogin .bind(this), 'Attempts to authenticate with the provided credentials.'),
@@ -50,7 +52,7 @@ export default class LoginController extends Controller {
 			ctx.throw(400)
 
 		// query database
-		let users = await this._databaseConnectionFactory.connect(this._databaseConnectionFactory.constructor.ROLE_APP, db =>
+		let users = await this._db.query(this._db.constructor.ROLE_APP, db =>
 			db.query('SELECT id, email, name, password_hash, role FROM users WHERE email=' + db.escape(email)))
 
 		// validate email

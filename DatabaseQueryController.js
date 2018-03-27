@@ -4,20 +4,22 @@ import Controller from './Controller'
 import Route from './Route'
 
 /**
- * Provides a route for executing arbitrary SQL queries.
+ * A controller that provides a route for executing arbitrary SQL queries.
  */
 export default class DatabaseQueryController extends Controller {
-	constructor(databaseConnectionFactory) {
+	/**
+	 * Creates a new instance.
+	 * @param {DatabaseConnectionFactory} db The database.
+	 */
+	constructor(db) {
 		super()
 
 		/**
 		 * The database that the controller provides access to.
-		 *
 		 * @type {Database}
-		 *
 		 * @private
 		 */
-		this._databaseConnectionFactory = databaseConnectionFactory
+		this._db = db
 
 		this._routes.push(
 			new Route('post', '/query', this._onPost.bind(this), 'Executes an arbitrary SQL query.')
