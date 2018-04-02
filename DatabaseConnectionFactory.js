@@ -30,7 +30,7 @@ export default class DatabaseConnectionFactory extends EventEmitter {
 	 * @param {Object} [options] - The additional options.
 	 * @param {Boolean} [options.logSql=false] - A value indicating whether to log the SQL queries.
 	 */
-	constructor(database, options) {
+	constructor(database, options = {}) {
 		super()
 
 		/**

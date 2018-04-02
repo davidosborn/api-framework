@@ -10,6 +10,7 @@
 		"bcrypt": "*",
 		"bluebird": "*",
 		"co": "*",
+		"fastpriorityqueue": "*",
 		"http": "*",
 		"is-generator-function": "*",
 		"koa": "*",
