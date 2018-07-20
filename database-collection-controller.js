@@ -1,8 +1,9 @@
 'use strict'
 
-import CollectionController from './CollectionController'
-import DatabaseConnectionFactory from './DatabaseConnectionFactory'
-import DatabaseUtils from './DatabaseUtils'
+import _ from 'lodash'
+import CollectionController from './collection-controller'
+import DatabaseConnectionFactory from './database-connection-factory'
+import DatabaseUtils from './database-utils'
 
 /**
  * A controller that provides routes to access a collection.

@@ -1,8 +1,9 @@
 'use strict'
 
 import isGeneratorFunction from 'is-generator-function'
-import PathPattern from './PathPattern'
-import UrlUtils from './UrlUtils'
+import _ from 'lodash'
+import PathPattern from './path-pattern'
+import UrlUtils from './url-utils'
 
 /**
  * A route.

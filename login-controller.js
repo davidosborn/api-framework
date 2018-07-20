@@ -1,8 +1,8 @@
 'use strict'
 
 import bcrypt from 'bcrypt'
-import Controller from './Controller'
-import Route from './Route'
+import Controller from './controller'
+import Route from './route'
 
 /**
  * Provides routes for authentication.

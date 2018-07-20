@@ -1,9 +1,10 @@
 'use strict'
 
 import EventEmitter from 'events'
+import _ from 'lodash'
 import mysql from 'mysql'
-import DatabaseUtils from './DatabaseUtils'
-import Promise from './Promise' // Promise.promisify
+import DatabaseUtils from './database-utils'
+import Promise from './promise' // Promise.promisify
 
 /**
  * Provides access to the database.

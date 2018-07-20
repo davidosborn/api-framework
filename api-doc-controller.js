@@ -1,8 +1,8 @@
 'use strict'
 
-import Controller from './Controller'
-import Route from './Route'
-import UrlUtils from './UrlUtils'
+import Controller from './controller'
+import Route from './route'
+import UrlUtils from './url-utils'
 
 /**
  * Provides API documentation.

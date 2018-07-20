@@ -1,7 +1,7 @@
 'use strict'
 
-import PathPattern from './PathPattern'
-import UrlUtils from './UrlUtils'
+import PathPattern from './path-pattern'
+import UrlUtils from './url-utils'
 
 /**
  * A route tree, or a node in a route tree.

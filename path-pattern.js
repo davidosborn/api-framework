@@ -1,7 +1,7 @@
 'use strict'
 
-import RegExp from './RegExp' // RegExp.escape
-import UrlUtils from './UrlUtils'
+import RegExp from './regexp' // RegExp.escape
+import UrlUtils from './url-utils'
 
 /**
  * Provides information about a path, including the patterns it contains.

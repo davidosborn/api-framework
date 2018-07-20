@@ -1,11 +1,12 @@
 'use strict'
 
 import compose from 'koa-compose'
+import _ from 'lodash'
 import SortedArray from 'sorted-array'
-import Controller from './Controller'
-import Route from './Route'
-import RouteTree from './RouteTree'
-import UrlUtils from './UrlUtils'
+import Controller from './controller'
+import Route from './route'
+import RouteTree from './route-tree'
+import UrlUtils from './url-utils'
 
 /**
  * A router.

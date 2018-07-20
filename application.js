@@ -5,9 +5,10 @@ import Koa from 'koa'
 import Body from 'koa-body'
 import convert from 'koa-convert'
 import Session from 'koa-session'
+import _ from 'lodash'
 import ipc from 'node-ipc'
 import Socket from 'socket.io'
-import UrlUtils from './UrlUtils'
+import UrlUtils from './url-utils'
 
 /**
  * The application.

@@ -1,16 +1,26 @@
 {
-	"name": "davids-server-framework",
-	"description": "David's Server Framework",
+	"name": "@davidosborn/api-framework",
 	"version": "0.0.0",
-	"private": true,
+	"description": "A framework for an API",
+	"keywords": [
+		"api",
+		"framework"
+	],
+	"homepage": "https://github.com/davidosborn/api-framework",
+	"bugs": {
+		"url": "https://github.com/davidosborn/api-framework",
+		"email": "david@davidosborn.io"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "David Osborn",
+		"email": "david@davidosborn.io",
+		"url": "http://davidosborn.io/"
+	},
 	"dependencies": {
-		"babel-core": "*",
-		"babel-preset-env": "*",
-		"babel-preset-stage-0": "*",
 		"bcrypt": "*",
 		"bluebird": "*",
 		"co": "*",
-		"fastpriorityqueue": "*",
 		"http": "*",
 		"is-generator-function": "*",
 		"koa": "*",
@@ -24,18 +34,5 @@
 		"node-ipc": "*",
 		"socket.io": "*",
 		"sorted-array": "*"
-	},
-	"babel": {
-		"presets": [
-			[
-				"env",
-				{
-					"targets": {
-						"node": "9"
-					}
-				}
-			],
-			"stage-0"
-		]
 	}
 }

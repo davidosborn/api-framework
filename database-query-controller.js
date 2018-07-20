@@ -1,7 +1,7 @@
 'use strict'
 
-import Controller from './Controller'
-import Route from './Route'
+import Controller from './controller'
+import Route from './route'
 
 /**
  * A controller that provides a route for executing arbitrary SQL queries.
