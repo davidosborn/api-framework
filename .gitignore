@@ -1,7 +1,5 @@
-.timestamp
-backup
-node_modules
-npm-debug.log
-
-/client/thirdparty
-/client/web.config
+/backup
+/lib/
+/node_modules
+/npm-debug.log
+/yarn-error.log
