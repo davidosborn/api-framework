@@ -1,6 +1,6 @@
 {
 	"name": "@davidosborn/api-framework",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"description": "A framework for an API",
 	"keywords": [
 		"api",
@@ -51,7 +51,8 @@
 	"babel": {
 		"presets": [
 			[
-				"@babel/env", {
+				"@babel/env",
+				{
 					"targets": {
 						"node": "current"
 					}
