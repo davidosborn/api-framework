@@ -3,7 +3,7 @@
 /**
  * Provides routes for a specific set of functionality.
  */
-export default class controller {
+export default class Controller {
 	/**
 	 * @param {Array.<Route>} routes - The routes defined by this controller.
 	 */

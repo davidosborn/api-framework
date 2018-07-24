@@ -1,5 +1,8 @@
 'use strict'
 
+/**
+ * A utility to create responses.
+ */
 export default class Response {
 	static html(html) {
 		header('Content-Type: text/html')
