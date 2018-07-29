@@ -181,12 +181,11 @@ export default class DatabaseConnectionFactory extends EventEmitter {
 	 */
 	_getUser(role) {
 		// normalize role
-		role = (
+		role =
 			role === undefined ? DatabaseConnectionFactory.ROLE_ANONYMOUS :
 			_.isString(role) ? role :
 			role.session !== undefined && role.session.role != null ? role.session.role :
 			DatabaseConnectionFactory.ROLE_ANONYMOUS
-		)
 
 		return this.database + '_' + role
 	}
