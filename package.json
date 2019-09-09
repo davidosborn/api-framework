@@ -9,12 +9,12 @@
 	"homepage": "https://github.com/davidosborn/api-framework#readme",
 	"bugs": {
 		"url": "https://github.com/davidosborn/api-framework/issues",
-		"email": "david@davidosborn.io"
+		"email": "davidcosborn@gmail.com"
 	},
 	"license": "MIT",
 	"author": {
 		"name": "David Osborn",
-		"email": "david@davidosborn.io",
+		"email": "davidcosborn@gmail.com",
 		"url": "http://davidosborn.io/"
 	},
 	"files": [
